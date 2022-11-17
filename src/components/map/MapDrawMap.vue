@@ -6,9 +6,26 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
 export default {
-    mounted() {
-        if (!window.kakao || !window.kakao.maps) {
+  data() {
+    return {
+      
+    }
+  },
+  watch: {
+    
+  },
+  computed: {
+    
+  },
+  methods: {
+    ...mapMutations({
+      setaptList: "SET_APTLIST",
+    }),
+  },
+  mounted() {
+    if (!window.kakao || !window.kakao.maps) {
       const script = document.createElement("script");
       script.src = "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=32b7b36540e75a778fb8400e8a821a41&libraries=services";
       /* global kakao */
@@ -24,7 +41,7 @@ export default {
     if (window.kakao &&window.kakao.maps) {
       console.log("제대로 불러옴");
     }
-    }
+  },
 }
 </script>
 

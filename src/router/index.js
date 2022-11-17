@@ -45,9 +45,9 @@ const routes = [
     component: () => import("@/views/VueMap"),
     children: [
       {
-        path: "dong",
-        name: "dong",
-        component: () => import("@/components/map/MapDong"),
+        path: "drawmap",
+        name: "drawmap",
+        component: () => import("@/components/map/MapDrawMap"),
       },
       {
         path: "name",

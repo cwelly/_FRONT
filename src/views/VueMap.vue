@@ -1,12 +1,12 @@
 <template>
-    <div>
+    <div    >
         <b-container class="text-center" fluid >
             <h2 >Map Zone 입니다.</h2>
-            <b-row>
+            <b-row align-h="center">
                 <map-search-component></map-search-component>
             </b-row>
-            <b-row align-v="center">
-                <b-col>
+            <b-row >
+                <b-col >
                     <map-result-list/>
                 </b-col>
                 <b-col cols="7">

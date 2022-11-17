@@ -6,6 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     userInfo: null,
+    aptList:null,
   },
   getters: {
   },
@@ -13,6 +14,9 @@ export default new Vuex.Store({
     SET_USERINFO(state, userinfo) {
       state.userInfo =userinfo;
     },
+    SET_APTLIST(state, aptList) {
+      state.aptList = aptList;
+    }
   },
   actions: {
     
