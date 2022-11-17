@@ -32,7 +32,7 @@ export default {
       }
   },
   watch: {
-    items: function (value) {
+    Items: function (value) {
       console.log(value);
       this.setaptList(value);
     }

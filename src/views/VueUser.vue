@@ -1,6 +1,6 @@
 <template>
     <div class="topdiv">
-        <b-container class="h-100" fluid="sm">
+        <b-container  fluid="sm">
             <b-jumbotron header="Login" >
                 
                 <router-view></router-view>
@@ -16,8 +16,5 @@ export default {
 </script>
 
 <style>
-.topdiv{
-    height:90%;
-    padding: 60px 0px 0px 0px;
-}
+
 </style>
