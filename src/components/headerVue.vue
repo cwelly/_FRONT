@@ -40,8 +40,26 @@
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
+const userStore = "userStore";
 export default {
+  name: "UserLogin",
+  data() {
+    return{
+      user: {
+        userid: null,
+        userpwd: null,
+      },
+    }
+  },
+  computed: {
+    ...mapState(memberStore, ["isLogin", "isLoginError", "userInfo"]),
+  },
+  methods: {
+    
+  },
 
+  
 }
 </script>
 
