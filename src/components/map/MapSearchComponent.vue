@@ -12,7 +12,7 @@
 
 <script>
 import { mapMutations } from "vuex";
-import http from "@/util/http-common";
+import http from "@/api/http-common";
 export default {
     data() { 
         return {
