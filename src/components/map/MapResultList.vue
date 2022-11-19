@@ -1,12 +1,13 @@
 <template>
   <div >
     <h2>결과리스트 입니다</h2>
-    <b-table striped hover :items="Items"></b-table>
+    <b-table striped hover :items="aptList"></b-table>
   </div>
 </template>
 
 <script>
-import { mapMutations } from "vuex";
+import { mapState } from "vuex";
+const mapStore = "mapStore";
 export default {
     name: "MapResultList",
     data() {
@@ -18,34 +19,12 @@ export default {
       }
   },
   methods: {
-    ...mapMutations({
-      setaptList: "SET_APTLIST",
-    }),
     
-    onSlideStart(slide) {
-      console.log(slide);
-        this.sliding = true
-      },
-    onSlideEnd(slide) {
-      console.log(slide);
-        this.sliding = false
-      }
   },
   watch: {
-    Items: function (value) {
-      console.log(value);
-      this.setaptList(value);
-    }
   },
   computed: {
-    Items: {
-      get() {
-        return this.$store.state.aptList;
-      },
-      set(value) {
-        this.items = value;
-      }
-    }
+    ...mapState(mapStore, ["aptList"]),
   },
 }
 </script>

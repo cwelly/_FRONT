@@ -1,7 +1,8 @@
 import http from "@/api/http-common";
 
-async function login(user ,success , fail) {
-    await http.post(`/user/login`, JSON.stringify(user)).then(success).catch(fail);
+async function login(user, success, fail) {
+    await http.post(`/user/login/${user.emailid}/${user.emaildomain}/${user.password}`).then(success).catch(fail);
+    // await http.post(`/user/login`, JSON.stringify(user)).then(success).catch(fail);
 }
 
 async function findById(userno ,success , fail) {

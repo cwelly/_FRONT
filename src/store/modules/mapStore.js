@@ -4,7 +4,9 @@ const mapStore = {
         aptList:null,
     },
     getters: {
-        
+        getAptList(state) {
+            return state.aptList;
+        }
     },
     mutations: {
         SET_APTLIST(state, aptList) {

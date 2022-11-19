@@ -13,6 +13,8 @@
 <script>
 import { mapMutations } from "vuex";
 import http from "@/api/http-common";
+const mapStore = "mapStore";
+
 export default {
     data() { 
         return {
@@ -41,9 +43,7 @@ export default {
     });
   },
   methods: {
-    ...mapMutations({
-      setaptList: "SET_APTLIST",
-    }),
+    ...mapMutations(mapStore, ["SET_APTLIST"]),
     // 동별 검색
     gosearchdong() {
       if (this.selecteddong==-1||this.selectedgugun==-1||this.selectedsido==-1) {
@@ -57,8 +57,8 @@ export default {
           }
         });
         http.get(`/map.do/searchDong/${paradong}`).then(({ data }) => {
-          console.log(data);
-          this.setaptList(data.aptList);
+          this.SET_APTLIST(data.aptList);
+          // console.log(this.$store.mapStore.state.aptList);
         });
       }
     }
