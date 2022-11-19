@@ -8,38 +8,28 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
+
+import { mapState } from "vuex";
+const mapStore = "mapStore";
+
 export default {
   data() {
     return {
-      aptList:null,
+      AptList:null,
     }
   },
   watch: {
-    AptList: function (value) {
+    aptList(value) {
+      console.log(value);
       this.AptList = value;
-      console.log("watch 시작했어용")
-      console.log(this.aptList);
-      this.loadMap();
-    }
+      this.loadMap()
+    },
   },
   computed: {
-    AptList: {
-      get() {
-        return this.$store.state.aptList;
-      },
-      set(value) {
-        this.aptList = value;
-      }
-    }
+    ...mapState(mapStore, ["aptList"]),
   },
   methods: {
-    ...mapMutations({
-      setaptList: "SET_APTLIST",
-    }),
     loadMap() {
-
-      // if (apts == null) {
       if (this.aptList=== null) {
         alert("검색 내역이 없습니다!")
       } else {
