@@ -62,9 +62,10 @@ const userStore = {
         let decodeToken = jwtDecode(token);
         // console.log("2. getUserInfo() decodeToken :: ", decodeToken);
         await findById(
-            decodeToken.userid,
+            decodeToken.userno,
             ({ data }) => {
-            if (data.message === "success") {
+                if (data.message === "success") {
+                    console.log(data);
                 commit("SET_USER_INFO", data.userInfo);
                 // console.log("3. getUserInfo data >> ", data);
             } else {

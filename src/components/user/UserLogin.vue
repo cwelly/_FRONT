@@ -14,16 +14,17 @@
             <b-form-group label="아이디:" label-for="userid">
               <b-form-input
                 id="userid"
-                v-model="user.userid"
+                v-model="user.emailid"
                 required
                 placeholder="아이디 입력...."
                 @keyup.enter="confirm"
               ></b-form-input>
             </b-form-group>
-            <select
+            <b-form-select
                 class="form-select"
                 id="emaildomain"
                 name="emaildomain"
+                v-model="user.emaildomain"
                 aria-label="이메일 도메인 선택"
               >
                 <option>선택</option>
@@ -31,12 +32,12 @@
                 <option value="google.com">구글</option>
                 <option value="naver.com">네이버</option>
                 <option value="kakao.com">카카오</option>
-              </select>
+              </b-form-select>
             <b-form-group label="비밀번호:" label-for="userpwd">
               <b-form-input
                 type="password"
                 id="userpwd"
-                v-model="user.userpwd"
+                v-model="user.userpassword"
                 required
                 placeholder="비밀번호 입력...."
                 @keyup.enter="confirm"
@@ -72,7 +73,7 @@
 <script>
 import { mapState, mapActions } from "vuex";
 
-const memberStore = "memberStore";
+const userStore = "userStore";
 
 export default {
   name: "UserLogin",
@@ -87,10 +88,10 @@ export default {
     };
   },
   computed: {
-    ...mapState(memberStore, ["isLogin", "isLoginError", "userInfo"]),
+    ...mapState(userStore, ["isLogin", "isLoginError", "userInfo"]),
   },
   methods: {
-    ...mapActions(memberStore, ["userConfirm", "getUserInfo"]),
+    ...mapActions(userStore, ["userConfirm", "getUserInfo"]),
     async confirm() {
       await this.userConfirm(this.user);
       let token = sessionStorage.getItem("access-token");
@@ -98,7 +99,8 @@ export default {
       if (this.isLogin) {
         await this.getUserInfo(token);
         // console.log("4. confirm() userInfo :: ", this.userInfo);
-        this.$router.push({ name: "main" });
+        this.$router.push({ name: "VueMain" });
+        console.log(this.userInfo);
       }
     },
     movePage() {
