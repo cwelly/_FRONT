@@ -75,9 +75,9 @@ const routes = [
         component: () => import("@/components/map/MapDrawMap"),
       },
       {
-        path: "name",
-        name: "name",
-        component: () => import("@/components/map/MapName"),
+        path: "seeall",
+        name: "seeall",
+        component: () => import("@/components/map/MapSeeAll"),
       },
     ],
   },
