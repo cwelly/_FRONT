@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import caseStore from "@/store/modules/caseStore";
 import mapStore from "@/store/modules/mapStore";
 import userStore from "@/store/modules/userStore";
 import createPersistedState from "vuex-persistedstate";
@@ -21,6 +22,7 @@ export default new Vuex.Store({
   modules: {
     userStore,
     mapStore,
+    caseStore,
   },
   plugins: [
     createPersistedState({

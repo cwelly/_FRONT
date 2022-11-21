@@ -81,6 +81,18 @@ const routes = [
       },
     ],
   },
+  {
+    path: "/case",
+    name: "case",
+    component: () => import("@/views/VueAllCase"),
+    children: [
+      {
+        path: "drawallamp",
+        name: "drawallamp",
+        component: () => import("@/components/case/CaseDrawAllMap"),
+      },
+    ],
+  },
 ]
 
 const router = new VueRouter({

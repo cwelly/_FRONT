@@ -1,7 +1,7 @@
 <template>
-  <div id="app" >
+  <div id="app" style=" width: 100%;height: 100%;">
     <header-vue></header-vue>
-    <router-view/>
+    <router-view style=" width: 100%;height: 100%;"/>
   </div>
 </template>
 
