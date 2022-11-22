@@ -4,7 +4,8 @@ import { getAllCase, } from "@/api/case";
 const caseStore = {
     namespaced: true,
     state: {
-        allList:null,
+        allList: null,
+        clickedMaker:null,
     },
     getters: {
         checkAllList: function (state) {
@@ -14,6 +15,9 @@ const caseStore = {
     mutations: {
         SET_ALL_LIST: (state, allList) => {
             state.allList = allList;
+        },
+        SET_CLICKED_MARKER: (state, clickedMaker) => {
+            state.clickedMaker = clickedMaker;
             },
     },
     actions: {
@@ -32,7 +36,7 @@ const caseStore = {
                     console.log(error);
                 }
             )
-        }
+        },
     },
 
 }
