@@ -21,4 +21,8 @@ async function logout(userno ,success , fail) {
     await http.get(`/user.do/logout/${userno}`).then(success).catch(fail);
 }
 
-export { login, findById, tokenRegeneration, logout };
+async function join(user, success, fail) {
+    await http.get(`/user.do/join/${user.emailid}/${user.emaildomain}/${user.password}/${user.name}/${user.addr}/${user.phone}/${user.sex}/${user.age}/${user.trans}`).then(success).catch(fail);
+}
+
+export { login, findById, tokenRegeneration, logout,join };

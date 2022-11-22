@@ -35,7 +35,7 @@
               <em>{{userInfo.name}}님 환영합니다</em>
             </template>
             <b-dropdown-item to="/user/mypage">MyPage</b-dropdown-item>
-            <b-dropdown-item to="/user/logout" @click.prevent="onClickLogout">LOGOUT</b-dropdown-item>
+            <b-dropdown-item to="/" @click.prevent="onClickLogout">LOGOUT</b-dropdown-item>
           </b-nav-item-dropdown>
           <b-nav-item-dropdown right v-else>
             <template #button-content>
@@ -79,7 +79,11 @@ export default {
       this.userLogout(this.userInfo.userno);
       sessionStorage.removeItem("access-token"); //저장된 토큰 없애기
       sessionStorage.removeItem("refresh-token"); //저장된 토큰 없애기
-      if (this.$route.path != "/") this.$router.push({ name: "main" });
+      alert("로그아웃 하셨습니다!");
+      if (this.$route.path != "/") {
+        this.$router.push({ name: "VueMain" });
+        
+      }
     },
   },
 

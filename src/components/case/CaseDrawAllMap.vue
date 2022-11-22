@@ -23,7 +23,8 @@ export default {
     return {
       AllList: null,
       map: null,
-      markers:null,
+      markers: [],
+      overlay:null,
     }
   },
   computed: {
@@ -31,6 +32,40 @@ export default {
   },
   methods: {
     ...mapActions(caseStore, ["getAllCaseList"]),
+
+    async makeOveray(makerno) {
+      if (this.overlay!=null &&this.overlay.getMap()!=null) {
+        this.overlay.setMap(null);
+      }
+      var marker1 = this.markers[makerno];
+      console.log("이게 케이스번호입니다", this.AllList[makerno]);
+      console.log("이건 포지션입니다.", marker1.getPosition());
+      var content =
+        `<div class="card" style="width: 18rem;bg-white">
+      <div class="card-body">
+        <h5 class="card-title" >${this.AllList[makerno].adress}</h5>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">사고시간 : ${this.AllList[makerno].casedate}</li>
+          <li class="list-group-item">가해차량 : ${this.AllList[makerno].pertrans}</li>
+          <li class="list-group-item">피해차량 : ${this.AllList[makerno].victrans}</li>
+          <li class="list-group-item">사고원인 : ${this.AllList[makerno].caseissue}</li>
+          <li class="list-group-item">피해정도 : ${this.AllList[makerno].vicdamage}</li>
+        </ul>
+      </div>
+      <a id="closebtn"  class="btn btn-primary">close</a>
+    </div>`;
+    this.overlay = new kakao.maps.CustomOverlay({
+      content: content,
+      map: this.map,
+      position: marker1.getPosition()       
+    });
+    await this.overlay.setMap(this.map);
+      document.querySelector('#closebtn').addEventListener("click",  () =>{
+          this.overlay.setMap(null);
+          this.overlay = null;
+        });
+
+    },
 
     async initMap() {
       var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -65,12 +100,15 @@ export default {
         var imageSize = new kakao.maps.Size(44, 49),
             imageOptions =  {offset: new kakao.maps.Point(27, 69)};
         var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOptions);
-        var marker = new kakao.maps.Marker({
+        var marker2 =await new kakao.maps.Marker({
           position: placePosition, //
           image: markerImage,
         });
-        marker.setMap(this.map);
-        // this.markers.push(marker);
+        marker2.setMap(this.map);
+        kakao.maps.event.addListener(marker2, 'click', () =>  {
+          this.makeOveray(index,this.AllList[index].caseno);
+        });
+        this.markers.push(marker2);
       }
       console.log("마커찍기 종료");
     },
@@ -88,6 +126,7 @@ export default {
       console.log("리스트 가져 왔나?", this.AllList);
       this.displayMarker();
     },
+        
   },
   created() {
     
@@ -99,13 +138,13 @@ export default {
       const script = document.createElement("script");
       script.src = "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=32b7b36540e75a778fb8400e8a821a41&libraries=services";
       /* global kakao */
-      script.onload = () => kakao.maps.load(this.initMap);
+      script.onload = () =>kakao.maps.load(this.initMap);
       console.log("initMap 끝~!");
       document.head.appendChild(script);
     }
     else {
       console.log("이미 로딩됨 : ", window.kakao);
-      this.initMap(); 
+      await this.initMap(); 
       // console.log(this.map);
     }
     if (window.kakao &&window.kakao.maps) {
@@ -119,6 +158,9 @@ export default {
 </script>
 
 <style>
+h5{
+  overflow: hidden;
+}
 #map {
   width: 80%;
   height: 80%;

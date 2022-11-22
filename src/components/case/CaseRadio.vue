@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h2>조건들을 추가할 부분 입니다.</h2>
+  <div style="height: 4rem">
+    
 </div>
 </template>
 
