@@ -47,10 +47,12 @@ const userStore = {
                 commit("SET_IS_VALID_TOKEN", true);
                 sessionStorage.setItem("access-token", accessToken);
                 sessionStorage.setItem("refresh-token", refreshToken);
+                alert('로그인 성공');
             } else {
                 commit("SET_IS_LOGIN", false);
                 commit("SET_IS_LOGIN_ERROR", true);
                 commit("SET_IS_VALID_TOKEN", false);
+                alert('로그인 실패');
             }
             },
             (error) => {
