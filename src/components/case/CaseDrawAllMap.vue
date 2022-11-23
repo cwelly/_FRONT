@@ -11,10 +11,14 @@
         <img src='https://cdn-icons-png.flaticon.com/128/6304/6304794.png' style="height:30px ; width:30px"/>: 기타
       </b-col>
     </b-row>
+    <b-container fluid>
+      <case-result></case-result>
+    </b-container>
   </div>
 </template>
 
 <script>
+import CaseResult from "@/components/case/CaseResultList.vue";
 import { mapState, mapActions } from "vuex";
 const caseStore = "caseStore";
 
@@ -26,6 +30,9 @@ export default {
       markers: [],
       overlay:null,
     }
+  },
+  components: {
+        CaseResult,
   },
   computed: {
     ...mapState(caseStore, ["allList"]),

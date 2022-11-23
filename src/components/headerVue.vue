@@ -13,7 +13,7 @@
           <b-nav-item to="/about">관심지역확인</b-nav-item>
              바꾼 네브바  -->
           <b-nav-item to="/case/drawallamp">모든 사건 확인</b-nav-item>
-          <b-nav-item to="/map/drawmap">사용자 맞춤 사건</b-nav-item>
+          <b-nav-item to="/case/drawfitmap">사용자 맞춤 사건</b-nav-item>
           <b-nav-item to="/about"></b-nav-item>
         </b-navbar-nav>
   

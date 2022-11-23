@@ -84,17 +84,23 @@ const routes = [
   {
     path: "/case",
     name: "case",
-    component: () => import("@/views/VueAllCase"),
+    component: () => import("@/views/VueCase"),
     children: [
       {
         path: "drawallamp",
         name: "drawallamp",
         component: () => import("@/components/case/CaseDrawAllMap"),
       },
+      {
+        path: "drawfitmap",
+        name: "drawfitmap",
+        beforeEnter: onlyAuthUser,
+        component: () => import("@/components/case/CaseDrawFitMap"),
+      },
     ],
   },
 ]
-
+//drawfitmap
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,

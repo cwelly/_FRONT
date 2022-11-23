@@ -5,5 +5,8 @@ async function getAllCase( success, fail) {
     await http.get(`/case.do/getall`).then(success).catch(fail);
 }
 
+async function getFitCase(user, success, fail) {
+    await http.get(`/case.do/getfit/${user.sex}/${user.age}/${user.trans}`).then(success).catch(fail);
+}
 
-export { getAllCase};
+export { getAllCase,getFitCase};

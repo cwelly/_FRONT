@@ -2,7 +2,6 @@
   <div>
     <b-table striped hover 
     :items="AllList"
-    :fields="fields"
     :current-page="currentPage"
     :per-page="perPage"
     show-empty
@@ -52,7 +51,6 @@ import { mapState } from "vuex";
 const caseStore = "caseStore";
 export default {
   
-  fields: ['vicdamage', 'caseissue', 'adress'],
   data() {
     return {
       totalRows: 1,
