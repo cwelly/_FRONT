@@ -1,16 +1,20 @@
 <template>
   <div>
+    <div style="height: 2rem"></div>
+    <h2 class="text-center">모든 사건 확인해보기</h2>
+    <div style="height: 2rem"></div>
     <div id="map" ></div>
     <b-row style="width: 80%;margin:0 auto;">
       <b-col cols="6"></b-col>
       <b-col>
-        사고종류 :
-        <img src="https://cdn-icons-png.flaticon.com/128/190/190462.png" style="height:30px ; width:30px"/>: 보행자
+        피해차 교통수단 :
+        <img src="https://cdn-icons-png.flaticon.com/128/190/190462.png" style="height:30px ; width:30px"/>: 보행
         <img src='https://cdn-icons-png.flaticon.com/128/5349/5349909.png' style="height:30px ; width:30px"/>: 자전거
         <img src='https://cdn-icons-png.flaticon.com/128/1810/1810768.png' style="height:30px ; width:30px"/>: 승용차
         <img src='https://cdn-icons-png.flaticon.com/128/6304/6304794.png' style="height:30px ; width:30px"/>: 기타
       </b-col>
     </b-row>
+    <div style="height: 2rem"></div>
     <b-container fluid>
       <case-result></case-result>
     </b-container>
@@ -47,26 +51,26 @@ export default {
       var marker1 = this.markers[makerno];
       console.log("이게 케이스번호입니다", this.AllList[makerno]);
       console.log("이건 포지션입니다.", marker1.getPosition());
-      var content =
-        `<div class="card" style="width: 18rem;bg-white">
-      <div class="card-body">
-        <h5 class="card-title" >${this.AllList[makerno].adress}</h5>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">사고시간 : ${this.AllList[makerno].casedate}</li>
-          <li class="list-group-item">가해차량 : ${this.AllList[makerno].pertrans}</li>
-          <li class="list-group-item">피해차량 : ${this.AllList[makerno].victrans}</li>
-          <li class="list-group-item">사고원인 : ${this.AllList[makerno].caseissue}</li>
-          <li class="list-group-item">피해정도 : ${this.AllList[makerno].vicdamage}</li>
-        </ul>
-      </div>
-      <a id="closebtn"  class="btn btn-primary">close</a>
-    </div>`;
-    this.overlay = new kakao.maps.CustomOverlay({
-      content: content,
-      map: this.map,
-      position: marker1.getPosition()       
-    });
-    await this.overlay.setMap(this.map);
+        var content =
+          `<div class="card" style="width: 18rem;bg-white">
+        <div class="card-body">
+          <h5 class="card-title" >${this.AllList[makerno].adress}</h5>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">사고시간 : ${this.AllList[makerno].casedate}</li>
+            <li class="list-group-item">가해차량 : ${this.AllList[makerno].pertrans}</li>
+            <li class="list-group-item">피해차량 : ${this.AllList[makerno].victrans}</li>
+            <li class="list-group-item">사고원인 : ${this.AllList[makerno].caseissue}</li>
+            <li class="list-group-item">피해정도 : ${this.AllList[makerno].vicdamage}</li>
+          </ul>
+        </div>
+        <a id="closebtn"  class="btn btn-primary">close</a>
+      </div>`;
+      this.overlay = new kakao.maps.CustomOverlay({
+        content: content,
+        map: this.map,
+        position: marker1.getPosition()       
+      });
+      await this.overlay.setMap(this.map);
       document.querySelector('#closebtn').addEventListener("click",  () =>{
           this.overlay.setMap(null);
           this.overlay = null;

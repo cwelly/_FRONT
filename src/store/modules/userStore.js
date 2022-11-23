@@ -114,8 +114,10 @@ const userStore = {
                 },
                 (error) => {
                     console.log(error);
+                    alert("RefreshToken 에러!!");
                     commit("SET_IS_LOGIN", false);
                     commit("SET_USER_INFO", null);
+                    router.push({ name: "login" });
                 }
                 );
             }

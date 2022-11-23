@@ -97,6 +97,11 @@ const routes = [
         beforeEnter: onlyAuthUser,
         component: () => import("@/components/case/CaseDrawFitMap"),
       },
+      {
+        path: "drawway",
+        name: "drawway",
+        component: () => import("@/components/case/CaseDrawWay"),
+      },
     ],
   },
 ]

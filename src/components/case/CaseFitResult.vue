@@ -1,7 +1,7 @@
 <template>
     <div>
       <b-table striped hover 
-      :items="FllList"
+      :items="FitList"
       :current-page="currentPage"
       :per-page="perPage"
       show-empty
@@ -62,8 +62,9 @@
     mounted() {
         // Set the initial number of items
       this.totalRows = this.fitList.length
-      this.fitList.forEach(element => {
-        this.FitList.push({
+        for (let index = 0; index < this.fitList.length; index++) {
+            const element = this.fitList[index];
+            this.FitList.push({
           "사건번호": element.caseno,
           "피해정도":element.vicdamage,
           "피해원인":element.caseissue,
@@ -72,7 +73,7 @@
           "피해자 교통수단":element.victrans,
           "피해자 나이":element.vicage,
         });
-      });
+        }
       },
     computed: {
       ...mapState(caseStore, ["fitList"]),

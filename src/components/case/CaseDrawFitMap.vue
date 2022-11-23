@@ -90,7 +90,6 @@ import CaseFitResult from "@/components/case/CaseFitResult.vue";
       },
   
         async displayMarker() {
-            console.log(this.fitList);
         for (let index = 0; index < this.fitList.length; index++) {
           var llat = this.fitList[index].lat, llng = this.fitList[index].lng;
           var placePosition = new kakao.maps.LatLng(llat,llng );
