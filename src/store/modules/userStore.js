@@ -1,6 +1,6 @@
 import jwtDecode from "jwt-decode";
 import router from "@/router";
-import { login, findById, tokenRegeneration, logout ,join} from "@/api/user";
+import { login, findById, tokenRegeneration, logout } from "@/api/user";
 
 const userStore = {
     namespaced: true,
@@ -139,24 +139,24 @@ const userStore = {
             }
         );
         }, 
-        async userRegister(user) {
-            await join(user,
-                ({ data }) => {
-                    if (data.resMsg==="회원등록완료") {
-                        alert('회원 가입 성공');
-                    }
-                    else if (data.resMsg==="중복회원") {
-                        alert('중 복 회 원 입니다 ');
-                    }
-                    else {
-                        alert('회원가입 실패!');
-                    }
-                },
-                (error) => {
-                    console.log(error);
-                }
-            );
-        }
+        // async userRegister(user) {
+        //     await join(user,
+        //         ({ data }) => {
+        //             if (data.resMsg==="회원등록완료") {
+        //                 alert('회원 가입 성공');
+        //             }
+        //             else if (data.resMsg==="중복회원") {
+        //                 alert('중 복 회 원 입니다 ');
+        //             }
+        //             else {
+        //                 alert('회원가입 실패!');
+        //             }
+        //         },
+        //         (error) => {
+        //             console.log(error);
+        //         }
+        //     );
+        // }
     },
 };
 

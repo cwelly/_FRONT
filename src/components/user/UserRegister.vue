@@ -1,6 +1,7 @@
 <template>
+  
+<b-jumbotron header="회원가입" >
   <div>
-    <h2>REgister 입니다</h2>
     <b-card class="text-left" style="margin:0 auto;" >
       <b-form class="mb-4">
         이메일 :
@@ -59,18 +60,17 @@
             <option value="승용차">승용차</option>
             <option value="기타">기타</option>
         </b-form-select>
-        <b-button block variant="primary" @click.prevent="join">등 록</b-button>
+        <b-button block variant="primary" @click.prevent="regist">등 록</b-button>
       </b-form>
 
     </b-card>
   </div>
+</b-jumbotron>
 </template>
 
 <script>
-import {  mapActions } from "vuex";
-
-const userStore = "userStore";
-
+import {join} from "@/api/user";
+import router from "@/router";
 export default {
   name: "UserRegister",
   data() {
@@ -89,11 +89,31 @@ export default {
       }
   },
   methods: {
-    ...mapActions(userStore, ["userRegister"]),
-    async join() {
-      console.log("vue에서의 user : ",this.user)
-      await this.userRegister(this.user);
+    async regist() {
+      // 데이터 정제 작업
+      if (this.user.age>100) {
+        alert('나이를 확인해주세요');
       }
+      else {
+        await join(this.user,
+                  ({ data }) => {
+                      if (data.resMsg==="회원등록완료") {
+                        alert('회원 가입 성공');
+                        router.push({ name: "VueMain" });
+                      }
+                      else if (data.resMsg==="중복회원") {
+                          alert('중 복 회 원 입니다 ');
+                      }
+                      else {
+                          alert('회원가입 실패!');
+                      }
+                  },
+                  (error) => {
+                      console.log(error);
+                  }
+              );
+        }
+      },
     }
 }
 

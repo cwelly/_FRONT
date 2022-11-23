@@ -1,10 +1,7 @@
 <template>
+  
+<b-jumbotron header="로그인" >
   <b-container class="bv-example-row">
-    <b-row>
-      <b-col>
-        <b-alert variant="secondary" show><h3>로그인</h3></b-alert>
-      </b-col>
-    </b-row>
     <b-row>
       <b-col></b-col>
       <b-col cols="8" >
@@ -56,6 +53,7 @@
       <b-col></b-col>
     </b-row>
   </b-container>
+</b-jumbotron>
   <!-- 
   <div>
     <h2>Login 입니다</h2>

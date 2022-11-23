@@ -75,7 +75,7 @@ export default {
       };
 
       // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
-      this.map = new kakao.maps.Map(mapContainer, mapOption); 
+      this.map =new kakao.maps.Map(mapContainer, mapOption); 
       console.log("로드맵 실행", this.map);
     },
 
@@ -113,18 +113,18 @@ export default {
       console.log("마커찍기 종료");
     },
 
-    gettingList() {
-      this.getAllCaseList();
+    async gettingList() {
+      await this.getAllCaseList();
     },
 
     
 
   },
   watch: {
-     allList(value) {
+    async allList(value) {
       this.AllList = value;
       console.log("리스트 가져 왔나?", this.AllList);
-      this.displayMarker();
+      await this.displayMarker();
     },
         
   },
@@ -132,15 +132,15 @@ export default {
     
   },
   async mounted() {
-    this.allList = null;
+    this.AllList = null;
     // console.log(" 되나?")
     if (!window.kakao || !window.kakao.maps) {
       const script = document.createElement("script");
-      script.src = "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=32b7b36540e75a778fb8400e8a821a41&libraries=services";
       /* global kakao */
       script.onload = () =>kakao.maps.load(this.initMap);
-      console.log("initMap 끝~!");
+      script.src = "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=32b7b36540e75a778fb8400e8a821a41&libraries=services";
       document.head.appendChild(script);
+      console.log("initMap 끝~!");
     }
     else {
       console.log("이미 로딩됨 : ", window.kakao);
@@ -150,7 +150,7 @@ export default {
     if (window.kakao &&window.kakao.maps) {
       // console.log("제대로 불러옴");
     }
-    this.gettingList();
+    await this.gettingList();
     
 
   },
