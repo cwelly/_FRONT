@@ -6,7 +6,7 @@
         id="carousel-1"
         v-model="slide"
         :interval="4000"
-        controls
+        fade
         indicators
         background="#ababab"
         img-width="1920"
@@ -70,7 +70,7 @@ export default {
     },
     onSlideEnd(slide) {
       console.log(slide);
-      this.sliding = false;
+      // this.sliding = false;
     },
   },
 };
