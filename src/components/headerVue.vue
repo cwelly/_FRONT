@@ -1,8 +1,15 @@
 <template>
   
     <b-navbar toggleable="lg" type="dark" variant="info">
-      <b-navbar-brand  to="/">WhereIsMyHome</b-navbar-brand>
-  
+      <b-navbar-brand to="/">
+        <b-icon
+          icon="house-fill"
+          scale="1.25"
+          shift-v="1.25"
+          aria-hidden="true"
+        ></b-icon>
+        Home</b-navbar-brand
+      >
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
   
       <b-collapse id="nav-collapse" is-nav>
